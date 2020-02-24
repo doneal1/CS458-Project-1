@@ -6,6 +6,8 @@
 #include<math.h>    
 #include<string>  
 #include <vector>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 
@@ -14,6 +16,8 @@ class rc6 {
 public:
 
 	rc6(string bytes, unsigned int a, unsigned int b, unsigned int c, unsigned int d);
+	~rc6();
+	string makeHexString(unsigned int a, unsigned int b, unsigned int c, unsigned int d);
 	unsigned int rotate(unsigned int a, unsigned int b, int ch);
 	void keySchedule();
 	string encryption();
@@ -25,9 +29,8 @@ private:
 	unsigned int A, B, C, D;
 	int w = 32, r = 20, byte;
 	unsigned int log = (unsigned int)log2(w);
-	unsigned int mod = (unsigned int)2 << w;
 	unsigned int* keys;
 	unsigned int* L;
-	unsigned int p = (unsigned int)ceil((exp(1) - 2) * mod);
-	unsigned int q = (unsigned int)((1.618033988749895 - 1) * mod);
+	unsigned int p = 0xB7E15163;
+	unsigned int q = 0x9E3779B9;
 };
