@@ -79,7 +79,7 @@ unsigned int rc6::rotate(unsigned int a, unsigned int b, int ch) {
 void rc6::keySchedule() {
 	unsigned int add = ceil((float)byte / 4);
 	for (int i = 0; i < (int)add; i++) {
-		unsigned int sw = strtoul(userkey.substr(4 * i, 4).c_str(), 0, 16);
+		unsigned int sw = strtoul(userkey.substr(8 * i, 8).c_str(), 0, 16);
 		sw = swapEndian(sw);
 		L[i] = sw;
 	}
